@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Feb 01 00:56:40 2022
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : hw2_calculator
+Top-level Entity Name : calculator
+Family : Cyclone IV E
+Total logic elements : 4,530
+    Total combinational functions : 2,692
+    Dedicated logic registers : 2,369
+Total registers : 2369
+Total pins : 21
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

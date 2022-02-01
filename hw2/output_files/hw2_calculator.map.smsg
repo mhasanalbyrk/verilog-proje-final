@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at bird_cpu.v(35): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at calculator.v(30): object "TIMER" differs only in case from object "timer" in the same scope
