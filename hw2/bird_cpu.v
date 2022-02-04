@@ -27,7 +27,8 @@ localparam	FETCH=4'b0000,
 		POP2=4'b1100,
 		CALL=4'b1010,
 		RET1=4'b1011,
-		RET2=4'b1101;
+		RET2=4'b1101,
+		Jump2=4'b1110;
  
  
 wire zeroresult; 
@@ -37,14 +38,14 @@ always @(posedge clk)
 		FETCH: 
 			begin
 				if ( data_in[15:12]==JZ) // if instruction is jz  
-					if (zeroflag)  //and if last bit of 7th register is 0 then jump to jump instruction state
-						state <= JMP;
+					if (zeroflag) 
+						state <= JMP;//and if last bit of 7th register is 0 then jump to jump instruction state
 					else
 						state <= FETCH; //stay here to catch next instruction
-			else
-				state <= data_in[15:12]; //read instruction opcode and jump the state of the instruction to be read
-				ir<=data_in[11:0]; //read instruction details into instruction register
-				pc<=pc+1; //increment program counter
+				else
+					state <= data_in[15:12]; //read instruction opcode and jump the state of the instruction to be read
+					ir<=data_in[11:0]; //read instruction details into instruction register
+					pc<=pc+1; //increment program counter
 			end
  
 		LDI:
@@ -67,7 +68,9 @@ always @(posedge clk)
  
 		JMP:
 			begin
-				pc <= pc+ir;
+				//ir <= data_in;
+				pc <= pc  + data_in;
+				//pc <= pc+ir ;
 				state <= FETCH;  
 			end
 
@@ -113,6 +116,11 @@ always @(posedge clk)
 			begin
 				pc=regbank[7];
 				state = FETCH;
+			end
+		Jump2:
+			begin
+			pc <= pc + ir;
+			state <= FETCH;
 			end
 		default: state <= FETCH;
 	endcase
